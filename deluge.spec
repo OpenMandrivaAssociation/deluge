@@ -92,7 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
+%if %mdkversion >=200710
 %py_platsitedir/deluge-%{version}-py*
+%endif
 %dir %py_platsitedir/deluge
 %py_platsitedir/deluge/*
 %dir %{_datadir}/%{name}
