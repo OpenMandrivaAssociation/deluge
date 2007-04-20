@@ -1,6 +1,6 @@
 %define name deluge
 %define version 0.5.0
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary: Bittorrent client based on GTK+ 2
 Name: %{name}
@@ -92,7 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%py_platsitedir/deluge-%{version}-py2.5.egg-info
+%py_platsitedir/deluge-%{version}-py*
 %dir %py_platsitedir/deluge
 %py_platsitedir/deluge/*
 %dir %{_datadir}/%{name}
