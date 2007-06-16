@@ -9,6 +9,14 @@ Release: %{release}
 Source0: %{name}-%{version}.tar.bz2
 
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
+
+# There's a check to see what style the distro uses for Boost libs
+# in setup.py. It doesn't work for a buildsystem-type environment
+# as it relies on the existence of /etc/issue , which is generated
+# at boot time. So let's just patch the check out of existence and
+# set the variable to the correct value.
+
+Patch0: deluge-0.5.1.1-nomt.patch
 License: GPL
 Group: Networking/File transfer
 Url: http://deluge-torrent.org/
@@ -30,19 +38,13 @@ environments such as GNOME and XFCE.
 %prep
 %setup -q
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
+%patch0 -p1 -b .nomt
 
 %build
 # FOR SYSTEM LIBTORRENT # We forcibly don't store the installation directory during the build, so
 # FOR SYSTEM LIBTORRENT # we need to ensure that it is properly inserted into the code as required.
 # FOR SYSTEM LIBTORRENT sed -i -e "s:INSTALL_PREFIX = '@datadir@':INSTALL_PREFIX = '%{_usr}':" \
 # FOR SYSTEM LIBTORRENT 	src/dcommon.py
-
-# There's a check to see what style the distro uses for Boost libs
-# in setup.py. It's too specific for Mandriva, checks for 2007.1
-# specifically. Fix it to be more general. May need to be adjusted
-# if we change our boost package. -AdamW 2007/06
-
-perl -pi -e 's,Mandriva Linux release 2007.1,Mandriva Linux,g' setup.py
 
 %ifarch x86_64 sparc64
 	CFLAGS="%{optflags} -DAMD64" python setup.py build
