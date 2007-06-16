@@ -37,6 +37,13 @@ environments such as GNOME and XFCE.
 # FOR SYSTEM LIBTORRENT sed -i -e "s:INSTALL_PREFIX = '@datadir@':INSTALL_PREFIX = '%{_usr}':" \
 # FOR SYSTEM LIBTORRENT 	src/dcommon.py
 
+# There's a check to see what style the distro uses for Boost libs
+# in setup.py. It's too specific for Mandriva, checks for 2007.1
+# specifically. Fix it to be more general. May need to be adjusted
+# if we change our boost package. -AdamW 2007/06
+
+perl -pi -e 's,Mandriva Linux release 2007.1,Mandriva Linux,g' setup.py
+
 %ifarch x86_64 sparc64
 	CFLAGS="%{optflags} -DAMD64" python setup.py build
 %else
