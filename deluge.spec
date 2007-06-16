@@ -1,6 +1,6 @@
 %define name deluge
-%define version 0.5.0
-%define release %mkrel 3
+%define version 0.5.1.1
+%define release %mkrel 1
 
 Summary: Bittorrent client based on GTK+ 2
 Name: %{name}
@@ -19,8 +19,6 @@ BuildRequires: python-devel
 BuildRequires: libboost-devel
 BuildRequires: libz-devel
 BuildRequires: ImageMagick
-BuildRequires: sed
-
 Requires: pyxdg
 
 %description
@@ -70,8 +68,7 @@ convert -scale 16 pixmaps/%{name}256.png %buildroot%_miconsdir/%{name}.png
 convert -scale 16 pixmaps/%{name}256.png %buildroot%_iconsdir/hicolor/16x16/apps/%{name}.png
 rm -f %buildroot%{_datadir}/pixmaps/%{name}.xpm
 
-sed -e s/%{name}.xpm/%{name}.png/ %buildroot%{_datadir}/applications/%{name}.desktop > %buildroot%{_datadir}/applications/%{name}.new && \
-mv -f %buildroot%{_datadir}/applications/%{name}.new %buildroot%{_datadir}/applications/%{name}.desktop
+perl -pi -e 's,%{name}.xpm,%{name},g' %buildroot%{_datadir}/applications/%{name}.desktop
 
 %find_lang %{name}
 
