@@ -18,6 +18,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: python-devel
 BuildRequires: libboost-devel
 BuildRequires: libz-devel
+BuildRequires: openssl-devel
 BuildRequires: ImageMagick
 Requires: pyxdg
 
