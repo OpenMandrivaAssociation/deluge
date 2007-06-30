@@ -1,12 +1,12 @@
 %define name deluge
-%define version 0.5.1.1
+%define version 0.5.1.90
 %define release %mkrel 1
 
 Summary: Bittorrent client based on GTK+ 2
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: %{name}-%{version}.tar.bz2
+Source0: http://download.deluge-torrent.org/testing/%{name}-%{version}.tar.gz
 
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
@@ -15,8 +15,7 @@ Source0: %{name}-%{version}.tar.bz2
 # as it relies on the existence of /etc/issue , which is generated
 # at boot time. So let's just patch the check out of existence and
 # set the variable to the correct value.
-
-Patch0: deluge-0.5.1.1-nomt.patch
+Patch0: deluge-0.5.1.90-nomt.patch
 License: GPL
 Group: Networking/File transfer
 Url: http://deluge-torrent.org/
@@ -57,7 +56,6 @@ rm -rf $RPM_BUILD_ROOT
 python ./setup.py install --root=$RPM_BUILD_ROOT
 
 desktop-file-install --vendor="" \
-  --add-category="X-MandrivaLinux-Internet-FileTransfer" \
   --add-category="GTK" \
   --remove-category="Application" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications \
