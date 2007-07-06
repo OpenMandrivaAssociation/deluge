@@ -1,12 +1,12 @@
 %define name deluge
-%define version 0.5.1.90
+%define version 0.5.2
 %define release %mkrel 1
 
 Summary: Bittorrent client based on GTK+ 2
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://download.deluge-torrent.org/testing/%{name}-%{version}.tar.gz
+Source0: http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
 
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
