@@ -15,7 +15,7 @@ Source0: http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
 # as it relies on the existence of /etc/issue , which is generated
 # at boot time. So let's just patch the check out of existence and
 # set the variable to the correct value.
-Patch0: deluge-0.5.1.90-nomt.patch
+Patch0: deluge-0.5.2-nomt.patch
 License: GPL
 Group: Networking/File transfer
 Url: http://deluge-torrent.org/
