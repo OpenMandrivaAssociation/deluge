@@ -1,6 +1,6 @@
 %define name deluge
 %define version 0.5.2
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: Bittorrent client based on GTK+ 2
 Name: %{name}
