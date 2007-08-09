@@ -1,5 +1,5 @@
 %define name 	deluge
-%define version	0.5.3
+%define version	0.5.4
 %define release	%mkrel 1
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
@@ -17,7 +17,7 @@ Source0:	http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
 # as it relies on the existence of /etc/issue , which is generated
 # at boot time. So let's just patch the check out of existence and
 # set the variable to the correct value.
-Patch0:		deluge-0.5.2.90-nomt.patch
+Patch0:		deluge-0.5.4-nomt.patch
 License:	GPLv2
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -60,6 +60,8 @@ python ./setup.py install --root=$RPM_BUILD_ROOT
 desktop-file-install --vendor="" \
   --add-category="GTK" \
   --remove-category="Application" \
+  --add-category="P2P" \
+  --add-category="FileTransfer" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications \
 $RPM_BUILD_ROOT%{_datadir}/applications/*
 
@@ -102,9 +104,4 @@ rm -rf $RPM_BUILD_ROOT
 %{py_platsitedir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
-%_iconsdir/hicolor/16x16/apps/%{name}.png
-%_iconsdir/hicolor/22x22/apps/%{name}.png
-%_iconsdir/hicolor/32x32/apps/%{name}.png
-%_iconsdir/hicolor/48x48/apps/%{name}.png
-%_iconsdir/hicolor/128x128/apps/%{name}.png
-%_iconsdir/hicolor/256x256/apps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.png
