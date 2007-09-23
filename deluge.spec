@@ -68,19 +68,9 @@ desktop-file-install --vendor="" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications \
 $RPM_BUILD_ROOT%{_datadir}/applications/*
 
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/{48x48,16x16}/apps
-# There's a method to this madness: use upstream sizes where they
-# exist, for useful sizes that don't exist, convert from an upstream
-# size that's an exact multiple.
-install -m 644 -D pixmaps/%{name}256.png %buildroot%_iconsdir/hicolor/256x256/apps/%{name}.png
-install -m 644 -D pixmaps/%{name}128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png 
-convert -scale 48 pixmaps/%{name}192.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-install -m 644 -D pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-install -m 644 -D pixmaps/%{name}22.png %{buildroot}%{_iconsdir}/hicolor/22x22/apps/%{name}.png
-convert -scale 16 pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
-
-
+for i in 22 32 48 128 192 256; do
+install -m 644 -D pixmaps/%{name}$i.png %{buildroot}%{_iconsdir}/hicolor/$ix$i/apps/%{name}.png
+done
 
 %find_lang %{name}
 
