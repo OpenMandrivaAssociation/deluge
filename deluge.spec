@@ -47,6 +47,9 @@ environments such as GNOME and XFCE.
 # FOR SYSTEM LIBTORRENT perl -pi -e "s,INSTALL_PREFIX = '@datadir@',INSTALL_PREFIX = '%{_prefix}',g" \
 # FOR SYSTEM LIBTORRENT 	src/dcommon.py
 
+# (tpg) do not hardcode icon extension in desktop file
+perl -pi -e 's/%{name}.png/%{name}/g' %{name}.desktop
+
 %ifarch x86_64 sparc64
 	CFLAGS="%{optflags} -DAMD64" python setup.py build
 %else
@@ -77,7 +80,7 @@ install -m 644 -D pixmaps/%{name}22.png %{buildroot}%{_iconsdir}/hicolor/22x22/a
 convert -scale 16 pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
 
-perl -pi -e 's,%{name}.xpm,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
+
 
 %find_lang %{name}
 
