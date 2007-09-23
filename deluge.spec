@@ -57,16 +57,16 @@ perl -pi -e 's/%{name}.png/%{name}/g' %{name}.desktop
 %endif
 
 %install
-rm -rf $RPM_BUILD_ROOT
-python ./setup.py install --root=$RPM_BUILD_ROOT
+rm -rf %{buildroot}
+python ./setup.py install --root=%{buildroot}
 
-desktop-file-install --vendor="" \
-  --add-category="GTK" \
-  --remove-category="Application" \
-  --add-category="P2P" \
-  --add-category="FileTransfer" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications \
-$RPM_BUILD_ROOT%{_datadir}/applications/*
+desktop-file-install \
+    --add-category="GTK" \
+    --remove-category="Application" \
+    --add-category="P2P" \
+    --add-category="FileTransfer" \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/applications/*
 
 for i in 22 32 48 128 192 256; do
 install -m 644 -D pixmaps/%{name}$i.png %{buildroot}%{_iconsdir}/hicolor/$ix$i/apps/%{name}.png
@@ -75,16 +75,17 @@ done
 %find_lang %{name}
 
 %post
-%{update_icon_cache hicolor}
 %{update_menus}
 %{update_desktop_database}
+%update_icon_cache hicolor
+
 %postun
-%{clean_icon_cache hicolor}
 %{clean_menus}
 %{clean_desktop_database}
+%clean_icon_cache hicolor
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
