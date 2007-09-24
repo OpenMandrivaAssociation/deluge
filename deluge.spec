@@ -1,5 +1,5 @@
 %define name 	deluge
-%define version	0.5.5
+%define version	0.5.4.1
 %define release	%mkrel 1
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
@@ -47,9 +47,6 @@ environments such as GNOME and XFCE.
 # FOR SYSTEM LIBTORRENT perl -pi -e "s,INSTALL_PREFIX = '@datadir@',INSTALL_PREFIX = '%{_prefix}',g" \
 # FOR SYSTEM LIBTORRENT 	src/dcommon.py
 
-# (tpg) do not hardcode icon extension in desktop file
-perl -pi -e 's/%{name}.png/%{name}/g' %{name}.desktop
-
 %ifarch x86_64 sparc64
 	CFLAGS="%{optflags} -DAMD64" python setup.py build
 %else
@@ -57,35 +54,44 @@ perl -pi -e 's/%{name}.png/%{name}/g' %{name}.desktop
 %endif
 
 %install
-rm -rf %{buildroot}
-python ./setup.py install --root=%{buildroot}
+rm -rf $RPM_BUILD_ROOT
+python ./setup.py install --root=$RPM_BUILD_ROOT
 
-desktop-file-install \
-    --add-category="GTK" \
-    --remove-category="Application" \
-    --add-category="P2P" \
-    --add-category="FileTransfer" \
-    --dir %{buildroot}%{_datadir}/applications \
-    %{buildroot}%{_datadir}/applications/*
+desktop-file-install --vendor="" \
+  --add-category="GTK" \
+  --remove-category="Application" \
+  --add-category="P2P" \
+  --add-category="FileTransfer" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+$RPM_BUILD_ROOT%{_datadir}/applications/*
 
-for i in 22 32 48 128 192 256; do
-install -m 644 -D pixmaps/%{name}$i.png %{buildroot}%{_iconsdir}/hicolor/$ix$i/apps/%{name}.png
-done
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{48x48,16x16}/apps
+# There's a method to this madness: use upstream sizes where they
+# exist, for useful sizes that don't exist, convert from an upstream
+# size that's an exact multiple.
+install -m 644 -D pixmaps/%{name}256.png %buildroot%_iconsdir/hicolor/256x256/apps/%{name}.png
+install -m 644 -D pixmaps/%{name}128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png 
+convert -scale 48 pixmaps/%{name}192.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+install -m 644 -D pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -m 644 -D pixmaps/%{name}22.png %{buildroot}%{_iconsdir}/hicolor/22x22/apps/%{name}.png
+convert -scale 16 pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
+
+perl -pi -e 's,%{name}.xpm,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %find_lang %{name}
 
 %post
+%{update_icon_cache hicolor}
 %{update_menus}
 %{update_desktop_database}
-%update_icon_cache hicolor
-
 %postun
+%{clean_icon_cache hicolor}
 %{clean_menus}
 %{clean_desktop_database}
-%clean_icon_cache hicolor
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-,root,root)
