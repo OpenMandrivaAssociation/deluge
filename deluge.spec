@@ -1,6 +1,6 @@
 %define name 	deluge
 %define version	0.5.4.1
-%define release	%mkrel 1
+%define release	%mkrel 2
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
@@ -18,7 +18,9 @@ Source0:	http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
 # at boot time. So let's just patch the check out of existence and
 # set the variable to the correct value.
 Patch0:		deluge-0.5.4-nomt.patch
-License:	GPLv2
+# Disables the automatic check for a newer version. We don't want it.
+Patch1:		deluge-0.5.4.1-versioncheck.patch
+License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -40,6 +42,7 @@ environments such as GNOME and XFCE.
 %setup -q
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
 %patch0 -p1 -b .nomt
+%patch1 -p1 -b .versioncheck
 
 %build
 # FOR SYSTEM LIBTORRENT # We forcibly don't store the installation directory during the build, so
@@ -54,30 +57,25 @@ environments such as GNOME and XFCE.
 %endif
 
 %install
-rm -rf $RPM_BUILD_ROOT
-python ./setup.py install --root=$RPM_BUILD_ROOT
+rm -rf %{buildroot}
+python ./setup.py install --root=%{buildroot}
 
+perl -pi -e 's,%{name}.xpm,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
 desktop-file-install --vendor="" \
   --add-category="GTK" \
   --remove-category="Application" \
   --add-category="P2P" \
   --add-category="FileTransfer" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications \
-$RPM_BUILD_ROOT%{_datadir}/applications/*
+  --dir %{buildroot}%{_datadir}/applications \
+%{buildroot}%{_datadir}/applications/*
 
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/{48x48,16x16}/apps
 # There's a method to this madness: use upstream sizes where they
 # exist, for useful sizes that don't exist, convert from an upstream
 # size that's an exact multiple.
-install -m 644 -D pixmaps/%{name}256.png %buildroot%_iconsdir/hicolor/256x256/apps/%{name}.png
-install -m 644 -D pixmaps/%{name}128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png 
-convert -scale 48 pixmaps/%{name}192.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-install -m 644 -D pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-install -m 644 -D pixmaps/%{name}22.png %{buildroot}%{_iconsdir}/hicolor/22x22/apps/%{name}.png
+for i in 22 32 48 128 192 256; do install -m 644 -D pixmaps/%{name}$i.png %{buildroot}%{_iconsdir}/hicolor/$ix$i/apps/%{name}.png; done
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/16x16/apps
 convert -scale 16 pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
-
-perl -pi -e 's,%{name}.xpm,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %find_lang %{name}
 
@@ -91,7 +89,7 @@ perl -pi -e 's,%{name}.xpm,%{name},g' %{buildroot}%{_datadir}/applications/%{nam
 %{clean_desktop_database}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
@@ -105,3 +103,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.png
+
