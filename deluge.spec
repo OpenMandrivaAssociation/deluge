@@ -1,6 +1,6 @@
 %define name 	deluge
 %define version	0.5.4.1
-%define release	%mkrel 2
+%define release	%mkrel 3
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
@@ -40,6 +40,9 @@ environments such as GNOME and XFCE.
 
 %prep
 %setup -q
+# French translation doesn't work, causes Deluge to crash on startup
+# Can't figure out why so let's remove it for now
+rm -f po/fr.po
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
 %patch0 -p1 -b .nomt
 %patch1 -p1 -b .versioncheck
@@ -60,7 +63,7 @@ environments such as GNOME and XFCE.
 rm -rf %{buildroot}
 python ./setup.py install --root=%{buildroot}
 
-perl -pi -e 's,%{name}.xpm,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
+perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
 desktop-file-install --vendor="" \
   --add-category="GTK" \
   --remove-category="Application" \
