@@ -1,6 +1,6 @@
 %define name 	deluge
 %define version	0.5.4.1
-%define release	%mkrel 3
+%define release	%mkrel 4
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
@@ -75,7 +75,7 @@ desktop-file-install --vendor="" \
 # There's a method to this madness: use upstream sizes where they
 # exist, for useful sizes that don't exist, convert from an upstream
 # size that's an exact multiple.
-for i in 22 32 48 128 192 256; do install -m 644 -D pixmaps/%{name}$i.png %{buildroot}%{_iconsdir}/hicolor/$ix$i/apps/%{name}.png; done
+for i in 22 32 48 128 192 256; do install -m 644 -D pixmaps/%{name}$i.png %{buildroot}%{_iconsdir}/hicolor/"$i"x"$i"/apps/%{name}.png; done
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/16x16/apps
 convert -scale 16 pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
@@ -106,4 +106,3 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.png
-
