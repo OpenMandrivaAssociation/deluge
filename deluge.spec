@@ -28,6 +28,7 @@ BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
 BuildRequires:	ImageMagick
 Requires:	pyxdg
+Requires:	pygtk2.0-libglade
 
 %description
 Deluge is a Bittorrent client written in Python and GTK+. Deluge is 
