@@ -1,6 +1,6 @@
 %define name 	deluge
 %define version	0.5.5
-%define release	%mkrel 2
+%define release	%mkrel 3
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
@@ -29,6 +29,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	ImageMagick
 Requires:	pyxdg
 Requires:	pygtk2.0-libglade
+Requires:	gnome-python-gnomevfs
 
 %description
 Deluge is a Bittorrent client written in Python and GTK+. Deluge is 
