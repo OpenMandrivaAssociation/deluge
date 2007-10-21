@@ -1,6 +1,6 @@
 %define name 	deluge
 %define version	0.5.5
-%define release	%mkrel 1
+%define release	%mkrel 2
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
@@ -12,12 +12,8 @@ Source0:	http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
 
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
-# There's a check to see what style the distro uses for Boost libs
-# in setup.py. It doesn't work for a buildsystem-type environment
-# as it relies on the existence of /etc/issue , which is generated
-# at boot time. So let's just patch the check out of existence and
-# set the variable to the correct value.
-Patch0:		deluge-0.5.4-nomt.patch
+# use renamed mt versions of boost libs
+Patch0:		deluge-0.5.5-boost.patch
 # Disables the automatic check for a newer version. We don't want it.
 Patch1:		deluge-0.5.4.1-versioncheck.patch
 License:	GPLv2+
@@ -27,7 +23,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	desktop-file-utils
 # FOR SYSTEM LIBTORRENT BuildRequires: libtorrent-rasterbar-devel
 BuildRequires:	python-devel
-BuildRequires:	libboost-devel
+BuildRequires:	boost-devel
 BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
 BuildRequires:	ImageMagick
@@ -44,7 +40,7 @@ environments such as GNOME and XFCE.
 # Can't figure out why so let's remove it for now
 rm -f po/fr.po
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
-%patch0 -p1 -b .nomt
+%patch0 -p1 -b .boost
 %patch1 -p1 -b .versioncheck
 
 %build
