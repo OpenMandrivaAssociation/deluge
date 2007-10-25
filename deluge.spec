@@ -13,7 +13,7 @@ Source0:	http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
 # use renamed mt versions of boost libs
-Patch0:		deluge-0.5.5-boost.patch
+Patch0:		deluge-0.5.6-boost.patch
 # Disables the automatic check for a newer version. We don't want it.
 Patch1:		deluge-0.5.4.1-versioncheck.patch
 License:	GPLv2+
@@ -70,12 +70,12 @@ desktop-file-install --vendor="" \
   --dir %{buildroot}%{_datadir}/applications \
 %{buildroot}%{_datadir}/applications/*
 
-# There's a method to this madness: use upstream sizes where they
-# exist, for useful sizes that don't exist, convert from an upstream
-# size that's an exact multiple.
-for i in 22 32 48 128 192 256; do install -m 644 -D pixmaps/%{name}$i.png %{buildroot}%{_iconsdir}/hicolor/"$i"x"$i"/apps/%{name}.png; done
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/16x16/apps
-convert -scale 16 pixmaps/%{name}32.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{48x48,32x32,16x16,scalable}/apps
+install -m 644 pixmaps/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
+install -m 644 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+convert -scale 32 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
 
 %find_lang %{name}
@@ -103,4 +103,4 @@ rm -rf %{buildroot}
 %{py_platsitedir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
-%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.*
