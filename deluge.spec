@@ -13,7 +13,7 @@ Source0:	http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
 # use renamed mt versions of boost libs
-Patch0:		deluge-0.5.6-boost.patch
+Patch0:		deluge-0.5.6.1-boost.patch
 # Disables the automatic check for a newer version. We don't want it.
 Patch1:		deluge-0.5.4.1-versioncheck.patch
 License:	GPLv2+
