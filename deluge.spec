@@ -1,5 +1,5 @@
 %define name 	deluge
-%define version	0.5.6.1
+%define version	0.5.6.2
 %define release	%mkrel 1
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
@@ -8,12 +8,12 @@ Summary:	Bittorrent client based on GTK+ 2
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Source0:	http://download.deluge-torrent.org/stable/%{name}-%{version}.tar.gz
+Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version}.tar.gz
 
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
 # use renamed mt versions of boost libs
-Patch0:		deluge-0.5.6.1-boost.patch
+Patch0:		deluge-0.5.6.2-boost.patch
 # Disables the automatic check for a newer version. We don't want it.
 Patch1:		deluge-0.5.4.1-versioncheck.patch
 License:	GPLv2+
@@ -37,7 +37,7 @@ intended to bring a native, full-featured client to Linux GTK+ desktop
 environments such as GNOME and XFCE.
 
 %prep
-%setup -q
+%setup -q -n%name-torrent-%version
 # French translation doesn't work, causes Deluge to crash on startup
 # Can't figure out why so let's remove it for now
 rm -f po/fr.po
