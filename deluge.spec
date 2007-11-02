@@ -1,6 +1,6 @@
 %define name 	deluge
 %define version	0.5.6.2
-%define release	%mkrel 1
+%define release	%mkrel 2
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
@@ -12,8 +12,6 @@ Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version
 
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
-# use renamed mt versions of boost libs
-Patch0:		deluge-0.5.6.2-boost.patch
 # Disables the automatic check for a newer version. We don't want it.
 Patch1:		deluge-0.5.4.1-versioncheck.patch
 License:	GPLv2+
@@ -42,7 +40,6 @@ environments such as GNOME and XFCE.
 # Can't figure out why so let's remove it for now
 rm -f po/fr.po
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
-%patch0 -p1 -b .boost
 %patch1 -p1 -b .versioncheck
 
 %build
