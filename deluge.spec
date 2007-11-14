@@ -25,6 +25,8 @@ BuildRequires:	boost-devel
 BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
 BuildRequires:	ImageMagick
+Requires:	python-dbus
+Requires:	%{_lib}rsvg
 Requires:	pyxdg
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gnomevfs
@@ -35,7 +37,7 @@ intended to bring a native, full-featured client to Linux GTK+ desktop
 environments such as GNOME and XFCE.
 
 %prep
-%setup -q -n%name-torrent-%version
+%setup -q -n %name-torrent-%version
 # French translation doesn't work, causes Deluge to crash on startup
 # Can't figure out why so let's remove it for now
 rm -f po/fr.po
