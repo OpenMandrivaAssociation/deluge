@@ -26,7 +26,7 @@ BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
 BuildRequires:	ImageMagick
 Requires:	python-dbus
-Requires:	%{_lib}rsvg
+Requires:	%{_lib}rsvg2
 Requires:	pyxdg
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gnomevfs
@@ -61,7 +61,7 @@ rm -rf %{buildroot}
 python ./setup.py install --root=%{buildroot}
 
 perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-desktop-file-install --vendor="" \
+desktop-file-install \
   --add-category="GTK" \
   --remove-category="Application" \
   --add-category="P2P" \
