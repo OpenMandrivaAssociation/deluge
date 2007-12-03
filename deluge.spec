@@ -1,5 +1,5 @@
 %define name 	deluge
-%define version	0.5.6.96
+%define version	0.5.7.1
 %define release	%mkrel 1
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
@@ -26,7 +26,7 @@ BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
 BuildRequires:	ImageMagick
 Requires:	python-dbus
-Requires:	%{_lib}rsvg2
+Requires:	librsvg2
 Requires:	pyxdg
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gnomevfs
@@ -37,7 +37,7 @@ intended to bring a native, full-featured client to Linux GTK+ desktop
 environments such as GNOME and XFCE.
 
 %prep
-%setup -q
+%setup -q -n deluge-torrent-%version
 # French translation doesn't work, causes Deluge to crash on startup
 # Can't figure out why so let's remove it for now
 rm -f po/fr.po
