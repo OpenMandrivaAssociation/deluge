@@ -13,7 +13,7 @@ Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
 # Disables the automatic check for a newer version. We don't want it.
-Patch1:		deluge-0.5.4.1-versioncheck.patch
+Patch1:		deluge-0.5.7.98-versioncheck.patch
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
