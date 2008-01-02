@@ -17,6 +17,7 @@ Patch1:		deluge-0.5.7.98-versioncheck.patch
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	desktop-file-utils
 # FOR SYSTEM LIBTORRENT BuildRequires: libtorrent-rasterbar-devel
 BuildRequires:	python-devel
