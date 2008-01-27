@@ -1,5 +1,5 @@
 %define name 	deluge
-%define version	0.5.8.1
+%define version	0.5.8.2
 %define release	%mkrel 1
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
@@ -13,7 +13,7 @@ Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 
 # Disables the automatic check for a newer version. We don't want it.
-Patch1:		deluge-0.5.7.98-versioncheck.patch
+Patch1:		deluge-0.5.8.2-versioncheck.patch
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
