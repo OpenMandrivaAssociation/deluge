@@ -1,19 +1,14 @@
-%define name 	deluge
-%define version	0.5.8.3
-%define release	%mkrel 1
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
 Summary:	Bittorrent client based on GTK+ 2
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		deluge
+Version:	0.5.8.4
+Release:	%mkrel 1
 Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version}.tar.gz
-
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
-
 # Disables the automatic check for a newer version. We don't want it.
-Patch1:		deluge-0.5.8.2-versioncheck.patch
+Patch1:		deluge-0.5.8.4-versioncheck.patch
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
