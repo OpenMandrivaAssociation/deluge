@@ -7,8 +7,6 @@ Version:	0.5.9.0
 Release:	%mkrel 1
 Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version}.tar.gz
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
-# Disables the automatic check for a newer version. We don't want it.
-Patch1:		deluge-0.5.8.4-versioncheck.patch
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -34,7 +32,6 @@ environments such as GNOME and XFCE.
 %prep
 %setup -q -n deluge-torrent-%version
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
-%patch1 -p1 -b .versioncheck
 
 %build
 # FOR SYSTEM LIBTORRENT # We forcibly don't store the installation directory during the build, so
