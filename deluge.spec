@@ -3,10 +3,12 @@
 
 Summary:	Bittorrent client based on GTK+ 2
 Name:		deluge
-Version:	0.5.9.0
+Version:	0.5.9.1
 Release:	%mkrel 1
 Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version}.tar.gz
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
+# Disable update check by default - AdamW 2008/06
+Patch0:		deluge-0.5.9.1-update.patch
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -31,6 +33,7 @@ environments such as GNOME and XFCE.
 
 %prep
 %setup -q -n deluge-torrent-%version
+%patch0 -p1 -b .update
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
 
 %build
