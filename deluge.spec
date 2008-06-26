@@ -3,7 +3,7 @@
 
 Summary:	Bittorrent client based on GTK+ 2
 Name:		deluge
-Version:	0.5.9.2
+Version:	0.5.9.3
 Release:	%mkrel 1
 Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version}.tar.gz
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
