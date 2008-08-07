@@ -3,12 +3,12 @@
 
 Summary:	Bittorrent client based on GTK+ 2
 Name:		deluge
-Version:	0.5.9.3
+Version:	0.9.05
 Release:	%mkrel 1
 Source0:	http://download.deluge-torrent.org/tarball/%{version}/%{name}-%{version}.tar.gz
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 # Disable update check by default - AdamW 2008/06
-Patch0:		deluge-0.5.9.1-update.patch
+Patch0:		deluge-0.9.05-update.patch
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -32,7 +32,7 @@ intended to bring a native, full-featured client to Linux GTK+ desktop
 environments such as GNOME and XFCE.
 
 %prep
-%setup -q -n deluge-torrent-%version
+%setup -q -n deluge-%version
 %patch0 -p1 -b .update
 # FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
 
@@ -55,19 +55,12 @@ python ./setup.py install --root=%{buildroot}
 perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
 desktop-file-install \
   --add-category="GTK" \
-  --remove-category="Application" \
   --add-category="P2P" \
   --add-category="FileTransfer" \
   --dir %{buildroot}%{_datadir}/applications \
 %{buildroot}%{_datadir}/applications/*
 
-
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/{48x48,32x32,16x16,scalable}/apps
-install -m 644 pixmaps/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
-install -m 644 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-convert -scale 32 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
+mv %buildroot%_iconsdir/scalable %buildroot%_iconsdir/hicolor/
 
 %find_lang %{name}
 
@@ -89,13 +82,12 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc README
-%{_bindir}/%{name}
+%doc ChangeLog
+%{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %if %{my_py_ver} >= 25
 %{py_platsitedir}/deluge-%{version}-py*
 %endif
 %{py_platsitedir}/%{name}
-%{_datadir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.*
