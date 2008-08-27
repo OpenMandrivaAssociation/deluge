@@ -4,7 +4,7 @@
 Summary:	Bittorrent client written in Python/PyGTK
 Name:		deluge
 Version:	0.9.08
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
