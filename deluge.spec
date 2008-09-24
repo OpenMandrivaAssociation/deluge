@@ -1,18 +1,18 @@
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
-Summary:	Bittorrent client written in Python/PyGTK
+Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.0.0
 Release:	%mkrel 1
-License:	GPLv2+
+License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
 Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}.tar.bz2
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 # Disable update check by default - AdamW 2008/06
-Patch0:		%{name}-0.9.05-update.patch
-Patch1:		%{name}-0.9.06-use-multithreaded-boost.patch
+Patch0:		deluge-0.9.05-update.patch
+Patch1:		deluge-1.0.0-use-multithreaded-boost.patch
 BuildRequires:	desktop-file-utils
 # FOR SYSTEM LIBTORRENT BuildRequires: libtorrent-rasterbar-devel
 BuildRequires:	python-devel
@@ -30,12 +30,12 @@ Requires:	python-setuptools
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-Deluge is a Bittorrent client written in Python and GTK+. Deluge is 
-intended to bring a native, full-featured client to Linux GTK+ desktop 
-environments such as GNOME and XFCE.
+Deluge is a Bittorrent client. Deluge is intended to bring a native,
+full-featured client to Linux GTK+ desktop environments such as GNOME
+and XFCE.
 
 %prep
-%setup -q -n deluge-%version
+%setup -q
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
 
