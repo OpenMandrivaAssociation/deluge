@@ -3,12 +3,12 @@
 
 Summary:	Bittorrent client written in Python/PyGTK
 Name:		deluge
-Version:	0.9.09
+Version:	1.0.0
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
-Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}.tar.gz
+Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}.tar.bz2
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 # Disable update check by default - AdamW 2008/06
 Patch0:		%{name}-0.9.05-update.patch
