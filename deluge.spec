@@ -3,7 +3,7 @@
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	1.0.0
+Version:	1.0.2
 Release:	%mkrel 1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
@@ -12,7 +12,7 @@ Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}
 # FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 # Disable update check by default - AdamW 2008/06
 Patch0:		deluge-0.9.05-update.patch
-Patch1:		deluge-1.0.0-use-multithreaded-boost.patch
+Patch1:		deluge-1.0.2-use-multithreaded-boost.patch
 BuildRequires:	desktop-file-utils
 # FOR SYSTEM LIBTORRENT BuildRequires: libtorrent-rasterbar-devel
 BuildRequires:	python-devel
