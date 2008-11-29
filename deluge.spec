@@ -4,7 +4,7 @@
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.0.5
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -26,7 +26,11 @@ Requires:	librsvg2
 Requires:	pyxdg
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gnomevfs
+%if %mdkversion > 200900
+Requires:	python-pkg-resources
+%else
 Requires:	python-setuptools
+%endif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -65,7 +69,7 @@ desktop-file-install \
   --dir %{buildroot}%{_datadir}/applications \
 %{buildroot}%{_datadir}/applications/*
 
-mv %buildroot%_iconsdir/scalable %buildroot%_iconsdir/hicolor/
+mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
 
 %find_lang %{name}
 
@@ -75,6 +79,7 @@ mv %buildroot%_iconsdir/scalable %buildroot%_iconsdir/hicolor/
 %{update_menus}
 %{update_desktop_database}
 %endif
+
 %if %mdkversion < 200900
 %postun
 %{clean_icon_cache hicolor}
