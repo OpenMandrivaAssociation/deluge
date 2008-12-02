@@ -99,5 +99,6 @@ rm -rf %{buildroot}
 %{py_platsitedir}/deluge-%{version}-py*
 %endif
 %{py_platsitedir}/%{name}
-%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/pixmaps/%{name}.*
 %{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_mandir}/man1/%{name}*.1.*
