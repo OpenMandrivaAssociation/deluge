@@ -19,7 +19,7 @@ BuildRequires:	python-devel
 BuildRequires:	boost-devel
 BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	python-setuptools
 Requires:	python-dbus
 Requires:	librsvg2
