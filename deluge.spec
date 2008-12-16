@@ -1,26 +1,34 @@
 # needed to run numerical comparisons on python version
 %define my_py_ver %(echo %py_ver | tr -d '.')
 
+# Use system or static libtorrent(-rasterbar)?
+%define sys_libtorrent	1
+
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.0.7
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
 Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}.tar.bz2
-# FOR SYSTEM LIBTORRENT Source1: %{name}-fixed-setup.py
 # Disable update check by default - AdamW 2008/06
 Patch0:		deluge-0.9.05-update.patch
 Patch1:		deluge-1.0.7-use-multithreaded-boost.patch
+# From upstream SVN (rev 4419+4420): fix running against system
+# libtorrent 0.14+ - AdamW 2008/12
+Patch2:		deluge-1.0.7-libtorrent14.patch
 BuildRequires:	desktop-file-utils
-# FOR SYSTEM LIBTORRENT BuildRequires: libtorrent-rasterbar-devel
 BuildRequires:	python-devel
 BuildRequires:	boost-devel
 BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-setuptools
+%if %sys_libtorrent
+BuildRequires:	libtorrent-rasterbar-devel
+BuildRequires:	python-libtorrent-rasterbar
+%endif
 Requires:	python-dbus
 Requires:	librsvg2
 Requires:	pyxdg
@@ -30,6 +38,10 @@ Requires:	gnome-python-gnomevfs
 Requires:	python-pkg-resources
 %else
 Requires:	python-setuptools
+%endif
+%if %sys_libtorrent
+Requires:	python-libtorrent-rasterbar
+BuildArch:	noarch
 %endif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -42,15 +54,9 @@ and XFCE.
 %setup -q
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
-
-# FOR SYSTEM LIBTORRENT install -m 0755 %{SOURCE1} ./setup.py
+%patch2 -p1 -b .libtorrent14
 
 %build
-# FOR SYSTEM LIBTORRENT # We forcibly don't store the installation directory during the build, so
-# FOR SYSTEM LIBTORRENT # we need to ensure that it is properly inserted into the code as required.
-# FOR SYSTEM LIBTORRENT perl -pi -e "s,INSTALL_PREFIX = '@datadir@',INSTALL_PREFIX = '%{_prefix}',g" \
-# FOR SYSTEM LIBTORRENT 	src/dcommon.py
-
 %ifarch x86_64 sparc64
 	CFLAGS="%{optflags} -DAMD64" python setup.py build
 %else
