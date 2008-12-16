@@ -26,7 +26,6 @@ BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-setuptools
 %if %sys_libtorrent
-BuildRequires:	libtorrent-rasterbar-devel
 BuildRequires:	python-libtorrent-rasterbar
 %endif
 Requires:	python-dbus
@@ -102,9 +101,9 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %if %{my_py_ver} >= 25
-%{py_platsitedir}/deluge-%{version}-py*
+%{py_puresitedir}/deluge-%{version}-py*
 %endif
-%{py_platsitedir}/%{name}
+%{py_puresitedir}/%{name}
 %{_datadir}/pixmaps/%{name}.*
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_mandir}/man1/%{name}*.1.*
