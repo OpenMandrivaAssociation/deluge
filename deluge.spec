@@ -1,6 +1,3 @@
-# needed to run numerical comparisons on python version
-%define my_py_ver %(echo %py_ver | tr -d '.')
-
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
 
@@ -100,10 +97,13 @@ rm -rf %{buildroot}
 %doc ChangeLog
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
-%if %{my_py_ver} >= 25
+%if sys_libtorrent
 %{py_puresitedir}/deluge-%{version}-py*
-%endif
 %{py_puresitedir}/%{name}
+%else
+%{py_platsitedir}/deluge-%{version}-py*
+%{py_platsitedir}/%{name}
+%endif
 %{_datadir}/pixmaps/%{name}.*
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_mandir}/man1/%{name}*.1.*
