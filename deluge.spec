@@ -4,7 +4,7 @@
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.0.7
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
