@@ -1,14 +1,15 @@
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
+%define prel RC2
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	1.0.7
-Release:	%mkrel 4
+Version:	1.1.0
+Release:	%mkrel -c %prel 1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
-Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}.tar.bz2
+Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}_%prel.tar.bz2
 # Disable update check by default - AdamW 2008/06
 Patch0:		deluge-0.9.05-update.patch
 Patch1:		deluge-1.0.7-use-multithreaded-boost.patch
