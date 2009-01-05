@@ -13,9 +13,6 @@ Source0:	http://download.deluge-torrent.org/source/%{version}/%{name}-%{version}
 # Disable update check by default - AdamW 2008/06
 Patch0:		deluge-0.9.05-update.patch
 Patch1:		deluge-1.0.7-use-multithreaded-boost.patch
-# From upstream SVN (rev 4419+4420): fix running against system
-# libtorrent 0.14+ - AdamW 2008/12
-Patch2:		deluge-1.0.7-libtorrent14.patch
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-devel
 BuildRequires:	boost-devel
@@ -51,7 +48,6 @@ and XFCE.
 %setup -qn %{name}-%{version}_%prel
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
-%patch2 -p1 -b .libtorrent14
 
 %build
 %ifarch x86_64 sparc64
@@ -99,7 +95,7 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %if sys_libtorrent
-%{py_puresitedir}/deluge-%{version}-py*
+%{py_puresitedir}/deluge-%{version}_%prel-py*
 %{py_puresitedir}/%{name}
 %else
 %{py_platsitedir}/deluge-%{version}-py*
