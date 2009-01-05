@@ -48,7 +48,7 @@ full-featured client to Linux GTK+ desktop environments such as GNOME
 and XFCE.
 
 %prep
-%setup -q
+%setup -qn %{name}-%{version}_%prel
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
 %patch2 -p1 -b .libtorrent14
