@@ -1,6 +1,6 @@
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
-%define prel RC2
+%define prel RC3
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
