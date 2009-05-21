@@ -3,7 +3,7 @@
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	1.1.7
+Version:	1.1.8
 Release:	%mkrel 1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
@@ -11,7 +11,7 @@ Url:		http://deluge-torrent.org/
 Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.bz2
 # Disable update check by default - AdamW 2008/06
 Patch0:		deluge-0.9.05-update.patch
-Patch1:		deluge-1.0.7-use-multithreaded-boost.patch
+Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-devel
 BuildRequires:	boost-devel
