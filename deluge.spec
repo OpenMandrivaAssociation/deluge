@@ -1,15 +1,14 @@
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
-%define rel rc5
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.2.0
-Release:	%mkrel -c %rel 1
+Release:	%mkrel 1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
-Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}_%rel.tar.bz2
+Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.lzma
 # Disable update check by default - AdamW 2008/06
 Patch0:		deluge-0.9.05-update.patch
 Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
@@ -49,7 +48,7 @@ full-featured client to Linux GTK+ desktop environments such as GNOME
 and XFCE.
 
 %prep
-%setup -qn %{name}-%{version}_%rel
+%setup -q
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
 
@@ -99,7 +98,7 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %if sys_libtorrent
-%{py_puresitedir}/deluge-%{version}_%rel-py*
+%{py_puresitedir}/deluge-%{version}-py*
 %{py_puresitedir}/%{name}
 %else
 %{py_platsitedir}/deluge-%{version}-py*
