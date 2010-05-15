@@ -4,7 +4,7 @@
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.2.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -12,6 +12,7 @@ Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.lzma
 # Disable update check by default - AdamW 2008/06
 Patch0:		deluge-0.9.05-update.patch
 Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
+Patch2:		deluge-1.2.3-fix-hangs-on-shutdown.patch
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-devel
 BuildRequires:	boost-devel
@@ -51,6 +52,7 @@ and XFCE.
 %setup -q
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
+%patch2 -p1
 
 %build
 %ifarch x86_64 sparc64
