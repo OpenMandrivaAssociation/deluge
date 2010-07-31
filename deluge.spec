@@ -1,18 +1,29 @@
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
 
+%define version 1.3.0
+%define prerel rc1
+%define rel 1
+
+%if %prerel
+%define srcname %{name}-%{version}_%prerel
+%define release %mkrel -c %prerel %rel
+%else
+%define srcname %{name}-%{version}
+%define release %mkrel %rel
+%endif
+
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	1.2.3
-Release:	%mkrel 2
+Version:	%{version}
+Release:	%{release}
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
-Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.lzma
-# Disable update check by default - AdamW 2008/06
-Patch0:		deluge-0.9.05-update.patch
+Source0:	http://download.deluge-torrent.org/source/%{srcname}.tar.lzma
+# (Debian) add patch to disable checking for updates by default
+Patch0:		new_release_check.patch
 Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
-Patch2:		deluge-1.2.3-fix-hangs-on-shutdown.patch
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-devel
 BuildRequires:	boost-devel
@@ -49,10 +60,10 @@ full-featured client to Linux GTK+ desktop environments such as GNOME
 and XFCE.
 
 %prep
-%setup -q
+%setup -q -n %{srcname}
+
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
-%patch2 -p1
 
 %build
 %ifarch x86_64 sparc64
@@ -77,20 +88,6 @@ mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
 
 %find_lang %{name}
 
-%if %mdkversion < 200900
-%post
-%{update_icon_cache hicolor}
-%{update_menus}
-%{update_desktop_database}
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_icon_cache hicolor}
-%{clean_menus}
-%{clean_desktop_database}
-%endif
-
 %clean
 rm -rf %{buildroot}
 
@@ -100,10 +97,10 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %if sys_libtorrent
-%{py_puresitedir}/deluge-%{version}-py*
+%{py_puresitedir}/%{srcname}-py*
 %{py_puresitedir}/%{name}
 %else
-%{py_platsitedir}/deluge-%{version}-py*
+%{py_platsitedir}/%{srcname}-py*
 %{py_platsitedir}/%{name}
 %endif
 %{_datadir}/pixmaps/%{name}.*
