@@ -2,7 +2,7 @@
 %define sys_libtorrent	1
 
 %define version 1.3.0
-%define prerel rc1
+%define prerel rc2
 %define rel 1
 
 %if %prerel
