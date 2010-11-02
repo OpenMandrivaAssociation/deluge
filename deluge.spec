@@ -1,7 +1,7 @@
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
 
-%define version 1.3.0
+%define version 1.3.1
 %define prerel 0
 %define rel 1
 
