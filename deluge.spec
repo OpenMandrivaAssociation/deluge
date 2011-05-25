@@ -85,11 +85,9 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %if sys_libtorrent
-%{py_puresitedir}/%{srcname}-py*
-%{py_puresitedir}/%{name}
+%{py_puresitedir}/*
 %else
-%{py_platsitedir}/%{srcname}-py*
-%{py_platsitedir}/%{name}
+%{py_platsitedir}/*
 %endif
 %{_datadir}/pixmaps/%{name}.*
 %{_iconsdir}/hicolor/*/apps/%{name}.*
