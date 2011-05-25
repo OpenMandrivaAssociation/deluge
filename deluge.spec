@@ -1,26 +1,14 @@
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
 
-%define version 1.3.1
-%define prerel 0
-%define rel 1
-
-%if %prerel
-%define srcname %{name}-%{version}_%prerel
-%define release %mkrel -c %prerel %rel
-%else
-%define srcname %{name}-%{version}
-%define release %mkrel %rel
-%endif
-
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	%{version}
-Release:	%{release}
+Version:	1.3.2
+Release:	1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
-Source0:	http://download.deluge-torrent.org/source/%{srcname}.tar.lzma
+Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.lzma
 # (Debian) add patch to disable checking for updates by default
 Patch0:		new_release_check.patch
 Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
@@ -60,7 +48,7 @@ full-featured client to Linux GTK+ desktop environments such as GNOME
 and XFCE.
 
 %prep
-%setup -q -n %{srcname}
+%setup -q -n %name-%version
 
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
