@@ -48,7 +48,7 @@ full-featured client to Linux GTK+ desktop environments such as GNOME
 and XFCE.
 
 %prep
-%setup -q -n %name-%version
+%setup -q
 
 %patch0 -p1 -b .update
 %patch1 -p1 -b .mt
@@ -65,13 +65,6 @@ rm -rf %{buildroot}
 python ./setup.py install --root=%{buildroot}
 
 perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-desktop-file-install \
-  --add-category="GTK" \
-  --add-category="P2P" \
-  --add-category="FileTransfer" \
-  --dir %{buildroot}%{_datadir}/applications \
-%{buildroot}%{_datadir}/applications/*
-
 mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
 
 %find_lang %{name}
