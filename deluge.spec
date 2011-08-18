@@ -21,6 +21,7 @@ BuildRequires:	libz-devel
 BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-setuptools
+BuildRequires:	intltool
 %if %sys_libtorrent
 BuildRequires:	python-libtorrent-rasterbar >= 0.14.9
 %endif
