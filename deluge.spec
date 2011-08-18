@@ -1,10 +1,12 @@
 # Use system or static libtorrent(-rasterbar)?
 %define sys_libtorrent	1
+%define _enable_debug_packages %nil
+%define debug_package %nil
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.3.3
-Release:	1
+Release:	%mkrel 1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -62,7 +64,7 @@ and XFCE.
 
 %install
 rm -rf %{buildroot}
-python ./setup.py install --root=%{buildroot}
+python ./setup.py install -O1 --skip-build --root=%{buildroot}
 
 perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
 mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
