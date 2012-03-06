@@ -17,7 +17,7 @@ Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-devel
 BuildRequires:	boost-devel
-BuildRequires:	libz-devel
+BuildRequires:	zlib-devel
 BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-setuptools
