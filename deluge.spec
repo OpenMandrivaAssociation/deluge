@@ -39,7 +39,6 @@ Requires:	python-pkg-resources
 Requires:	python-libtorrent-rasterbar >= 0.14.9
 BuildArch:	noarch
 %endif
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Deluge is a Bittorrent client. Deluge is intended to bring a native,
@@ -66,13 +65,10 @@ and XFCE.
 %__perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
 %__mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
 
-%find_lang %{name}
-
 %clean
 %__rm -rf %{buildroot}
 
-%files -f %{name}.lang
-%defattr(-,root,root)
+%files
 %doc ChangeLog
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
