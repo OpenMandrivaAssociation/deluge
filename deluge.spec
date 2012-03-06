@@ -5,7 +5,7 @@
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	1.3.3
+Version:	1.3.4
 Release:	%mkrel 1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
@@ -22,7 +22,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-setuptools
 BuildRequires:	intltool
-%if %sys_libtorrent
+%if %{sys_libtorrent}
 BuildRequires:	python-libtorrent-rasterbar >= 0.14.9
 %endif
 Requires:	librsvg2
@@ -34,12 +34,8 @@ Requires:	python-simplejson
 Requires:	python-notify
 Requires:	python-OpenSSL
 Requires:	python-chardet
-%if %mdkversion > 200900
 Requires:	python-pkg-resources
-%else
-Requires:	python-setuptools
-%endif
-%if %sys_libtorrent
+%if %{sys_libtorrent}
 Requires:	python-libtorrent-rasterbar >= 0.14.9
 BuildArch:	noarch
 %endif
@@ -64,23 +60,23 @@ and XFCE.
 %endif
 
 %install
-rm -rf %{buildroot}
-python ./setup.py install -O1 --skip-build --root=%{buildroot}
+%__rm -rf %{buildroot}
+%__python ./setup.py install -O1 --skip-build --root=%{buildroot}
 
-perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
+%__perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
+%__mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
 
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc ChangeLog
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
-%if sys_libtorrent
+%if %{sys_libtorrent}
 %{py_puresitedir}/*
 %else
 %{py_platsitedir}/*
