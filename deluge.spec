@@ -6,7 +6,7 @@
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.3.5
-Release:	%mkrel 1
+Release:	2
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -59,14 +59,10 @@ and XFCE.
 %endif
 
 %install
-%__rm -rf %{buildroot}
-%__python ./setup.py install -O1 --skip-build --root=%{buildroot}
+python ./setup.py install -O1 --skip-build --root=%{buildroot}
 
-%__perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-%__mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
-
-%clean
-%__rm -rf %{buildroot}
+perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
+mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
 
 %files
 %doc ChangeLog
