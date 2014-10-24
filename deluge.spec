@@ -1,11 +1,11 @@
 # Use system or static libtorrent(-rasterbar)?
-%define sys_libtorrent	1
+%define sys_libtorrent 1
 %define _enable_debug_packages %nil
 %define debug_package %nil
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	1.3.6
+Version:	1.3.9
 Release:	1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
@@ -45,6 +45,21 @@ Deluge is a Bittorrent client. Deluge is intended to bring a native,
 full-featured client to Linux GTK+ desktop environments such as GNOME
 and XFCE.
 
+%files
+%doc ChangeLog
+%{_bindir}/%{name}*
+%{_datadir}/applications/%{name}.desktop
+%if %{sys_libtorrent}
+%{py_puresitedir}/*
+%else
+%{py_platsitedir}/*
+%endif
+%{_datadir}/pixmaps/%{name}.*
+%{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_mandir}/man1/%{name}*.1.*
+
+#----------------------------------------------------------------------------
+
 %prep
 %setup -q
 
@@ -60,21 +75,4 @@ and XFCE.
 
 %install
 python ./setup.py install -O1 --skip-build --root=%{buildroot}
-
-perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/%{name}.desktop
-mv %{buildroot}%{_iconsdir}/scalable %{buildroot}%{_iconsdir}/hicolor/
-
-%files
-%doc ChangeLog
-%{_bindir}/%{name}*
-%{_datadir}/applications/%{name}.desktop
-%if %{sys_libtorrent}
-%{py_puresitedir}/*
-%else
-%{py_platsitedir}/*
-%endif
-%{_datadir}/pixmaps/%{name}.*
-%{_iconsdir}/hicolor/*/apps/%{name}.*
-%{_mandir}/man1/%{name}*.1.*
-
 
