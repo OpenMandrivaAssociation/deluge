@@ -6,7 +6,7 @@
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	1.3.9
-Release:	1
+Release:	2
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -15,7 +15,7 @@ Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.bz2
 Patch0:		new_release_check.patch
 Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
 BuildRequires:	desktop-file-utils
-BuildRequires:	python-devel
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	boost-devel
 BuildRequires:	zlib-devel
 BuildRequires:	openssl-devel
@@ -50,9 +50,9 @@ and XFCE.
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %if %{sys_libtorrent}
-%{py_puresitedir}/*
+%{py2_puresitedir}/*
 %else
-%{py_platsitedir}/*
+%{py2_platsitedir}/*
 %endif
 %{_datadir}/pixmaps/%{name}.*
 %{_iconsdir}/hicolor/*/apps/%{name}.*
@@ -68,11 +68,11 @@ and XFCE.
 
 %build
 %ifarch x86_64 sparc64
-	CFLAGS="%{optflags} -DAMD64" python setup.py build
+	CFLAGS="%{optflags} -DAMD64" %{__python2} setup.py build
 %else
-	CFLAGS="%{optflags}" python setup.py build
+	CFLAGS="%{optflags}" %{__python2} setup.py build
 %endif
 
 %install
-python ./setup.py install -O1 --skip-build --root=%{buildroot}
+%{__python2} ./setup.py install -O1 --skip-build --root=%{buildroot}
 
