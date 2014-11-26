@@ -10,7 +10,7 @@ Release:	1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
-Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.lzma
+Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.xz
 # (Debian) add patch to disable checking for updates by default
 Patch0:		new_release_check.patch
 Patch1:		deluge-1.1.8-use-multithreaded-boost.patch
