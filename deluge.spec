@@ -20,7 +20,7 @@ BuildRequires:	boost-devel
 BuildRequires:	zlib-devel
 BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
-BuildRequires:	python-setuptools
+BuildRequires:	pythonegg(setuptools)
 BuildRequires:	intltool
 %if %{sys_libtorrent}
 BuildRequires:	python-libtorrent-rasterbar >= 0.14.9
