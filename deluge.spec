@@ -31,9 +31,9 @@ Requires:	pygtk2.0-libglade
 Requires:	gnome-python-gnomevfs
 Requires:	python-twisted-web
 Requires:	python-simplejson
-Requires:	python-notify
+Requires:	python2-notify
 Requires:	python-OpenSSL
-Requires:	python-chardet
+Requires:	python2-chardet
 Requires:	python-pkg-resources
 %if %{sys_libtorrent}
 Requires:	python-libtorrent-rasterbar >= 0.14.9
