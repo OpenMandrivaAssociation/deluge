@@ -28,13 +28,13 @@ BuildRequires:	python-libtorrent-rasterbar >= 0.14.9
 Requires:	librsvg2
 Requires:	pyxdg
 Requires:	pygtk2.0-libglade
-Requires:	gnome-python-gnomevfs
+Requires:	gnome-python2-gnomevfs
 Requires:	python-twisted-web
-Requires:	python-simplejson
+Requires:	python2-simplejson
 Requires:	python2-notify
 Requires:	python-OpenSSL
 Requires:	python2-chardet
-Requires:	python-pkg-resources
+Requires:	python2-pkg-resources
 %if %{sys_libtorrent}
 Requires:	python-libtorrent-rasterbar >= 0.14.9
 BuildArch:	noarch
