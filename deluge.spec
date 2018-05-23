@@ -26,7 +26,8 @@ BuildRequires:	intltool
 BuildRequires:	python-libtorrent-rasterbar >= 0.14.9
 %endif
 Requires:	librsvg2
-Requires:	pyxdg
+#Requires:	pyxdg
+Requires:	python2-xdg
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python2-gnomevfs
 Requires:	python-twisted-web
