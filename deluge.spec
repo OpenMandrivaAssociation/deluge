@@ -26,15 +26,19 @@ BuildRequires:	intltool
 BuildRequires:	python-libtorrent-rasterbar >= 0.14.9
 %endif
 Requires:	librsvg2
-Requires:	pyxdg
+#Requires:	pyxdg
+Requires:	python2-xdg
 Requires:	pygtk2.0-libglade
-Requires:	gnome-python-gnomevfs
+Requires:	gnome-python2-gnomevfs
 Requires:	python-twisted-web
-Requires:	python-simplejson
-Requires:	python-notify
-Requires:	python-OpenSSL
-Requires:	python-chardet
-Requires:	python-pkg-resources
+Requires:	python2-twisted
+Requires:	python2-simplejson
+Requires:	python2-notify
+#Requires:	python-OpenSSL
+Requires:	python2-pyopenssl
+Requires:	python2-chardet
+Requires:	python2-pkg-resources
+Requires:	python2-service_identity
 %if %{sys_libtorrent}
 Requires:	python-libtorrent-rasterbar >= 0.14.9
 BuildArch:	noarch
