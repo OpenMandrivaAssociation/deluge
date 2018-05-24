@@ -35,7 +35,7 @@ Requires:	python2-twisted
 Requires:	python2-simplejson
 Requires:	python2-notify
 #Requires:	python-OpenSSL
-Requires:	python2-pyope
+Requires:	python2-pyopenssl
 Requires:	python2-chardet
 Requires:	python2-pkg-resources
 %if %{sys_libtorrent}
