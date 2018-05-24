@@ -38,6 +38,7 @@ Requires:	python2-notify
 Requires:	python2-pyopenssl
 Requires:	python2-chardet
 Requires:	python2-pkg-resources
+Requires:	python2-service_identity
 %if %{sys_libtorrent}
 Requires:	python-libtorrent-rasterbar >= 0.14.9
 BuildArch:	noarch
