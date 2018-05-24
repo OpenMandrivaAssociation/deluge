@@ -31,6 +31,7 @@ Requires:	python2-xdg
 Requires:	pygtk2.0-libglade
 Requires:	gnome-python2-gnomevfs
 Requires:	python-twisted-web
+Requires:	python2-twisted
 Requires:	python2-simplejson
 Requires:	python2-notify
 Requires:	python-OpenSSL
