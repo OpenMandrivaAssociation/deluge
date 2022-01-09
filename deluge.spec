@@ -65,9 +65,6 @@ and XFCE.
 %prep
 %setup -q
 
-%patch0 -p1 -b .update
-%patch1 -p1 -b .mt
-
 %build
 %ifarch x86_64 sparc64
 	CFLAGS="%{optflags} -DAMD64" %{__python2} setup.py build
