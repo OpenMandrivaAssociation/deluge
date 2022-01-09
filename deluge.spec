@@ -33,14 +33,8 @@ full-featured client to Linux GTK+ desktop environments such as GNOME
 and XFCE.
 
 %files
-%doc ChangeLog
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
-%if %{sys_libtorrent}
-%{py2_puresitedir}/*
-%else
-%{py2_platsitedir}/*
-%endif
 %{_datadir}/pixmaps/%{name}.*
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_mandir}/man1/%{name}*.1.*
