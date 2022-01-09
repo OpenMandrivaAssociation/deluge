@@ -20,26 +20,11 @@ BuildRequires:	pkgconfig(openssl)
 BuildRequires:	imagemagick
 BuildRequires:	python3dist(setuptools)
 BuildRequires:	intltool
+BuildRequires:	appstream-util
+BuildRequires:	python-devel
+BuildRequires:	python-wheel
 %if %{sys_libtorrent}
 BuildRequires:	python-libtorrent-rasterbar
-%endif
-Requires:	librsvg2
-#Requires:	pyxdg
-Requires:	python2-xdg
-Requires:	pygtk2.0-libglade
-Requires:	gnome-python2-gnomevfs
-Requires:	python-twisted-web
-Requires:	python2-twisted
-Requires:	python2-simplejson
-Requires:	python2-notify
-#Requires:	python-OpenSSL
-Requires:	python2-pyopenssl
-Requires:	python2-chardet
-Requires:	python2-pkg-resources
-Requires:	python2-service_identity
-%if %{sys_libtorrent}
-Requires:	python-libtorrent-rasterbar >= 0.14.9
-BuildArch:	noarch
 %endif
 
 %description
@@ -66,11 +51,7 @@ and XFCE.
 %setup -q
 
 %build
-%ifarch x86_64 sparc64
-	CFLAGS="%{optflags} -DAMD64" %{__python2} setup.py build
-%else
-	CFLAGS="%{optflags}" %{__python2} setup.py build
-%endif
+%py_build
 
 %install
-%{__python2} ./setup.py install -O1 --skip-build --root=%{buildroot}
+%py_install
