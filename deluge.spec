@@ -44,7 +44,7 @@ and XFCE.
 %{_datadir}/pixmaps/%{name}.*
 %{_datadir}/appdata/deluge.appdata.xml
 %{_iconsdir}/hicolor/*/apps/%{name}.*
-%{_iconsdir}hicolor/*x*/apps/deluge-panel.png
+%{_iconsdir}/hicolor/*x*/apps/deluge-panel.png
 %{_mandir}/man1/%{name}*.1.*
 %{python_sitelib}/%{name}-%{version}-py*.*.egg-info/PKG-INFO
 %{python_sitelib}/%{name}-%{version}-py*.*.egg-info/
