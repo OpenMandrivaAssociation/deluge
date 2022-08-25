@@ -3,7 +3,7 @@
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	2.0.5
+Version:	2.1.1
 Release:	1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
@@ -46,7 +46,6 @@ and XFCE.
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_iconsdir}/hicolor/*x*/apps/deluge-panel.png
 %{_mandir}/man1/%{name}*.1.*
-%{python_sitelib}/%{name}-%{version}-py*.*.egg-info/PKG-INFO
 %{python_sitelib}/%{name}-%{version}-py*.*.egg-info/
 %{python_sitelib}/%{name}/
 #----------------------------------------------------------------------------
