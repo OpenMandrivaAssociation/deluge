@@ -4,7 +4,7 @@
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	2.1.1
-Release:	1
+Release:	2
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		http://deluge-torrent.org/
@@ -26,6 +26,7 @@ BuildRequires:	python3dist(libtorrent)
 Requires: python3dist(libtorrent)
 Requires:	python3dist(pycairo)
 Requires:	python-gobject3
+Requires: python3dist(service-identity)
 Recommends:	python3dist(dbus-python)
 Recommends: python3dist(mako)
 Requires: %{_lib}appindicator3_1
