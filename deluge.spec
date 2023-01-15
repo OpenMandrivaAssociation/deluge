@@ -11,7 +11,7 @@ Url:		http://deluge-torrent.org/
 Source0:	http://download.deluge-torrent.org/source/%{name}-%{version}.tar.gz
 
 BuildRequires:	desktop-file-utils
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	boost-devel
 BuildRequires:	zlib-devel
 BuildRequires:	pkgconfig(openssl)
@@ -50,7 +50,7 @@ and XFCE.
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_iconsdir}/hicolor/*x*/apps/deluge-panel.png
 %{_mandir}/man1/%{name}*.1.*
-#{python_sitelib}/%{name}-%{version}-py*.*.egg-info/
+%{python_sitelib}/deluge-%{version}.dist-info
 %{python_sitelib}/%{name}/
 #----------------------------------------------------------------------------
 
