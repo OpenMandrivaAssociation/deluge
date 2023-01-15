@@ -21,6 +21,7 @@ BuildRequires:	intltool
 BuildRequires:	appstream-util
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python3dist(wheel)
+BuildRequires:	python3dist(pip)
 BuildRequires:	python3dist(libtorrent)
 BuildRequires:  python3dist(setproctitle)
 
