@@ -1,0 +1,32 @@
+--- a/deluge/core/preferencesmanager.py
++++ b/deluge/core/preferencesmanager.py
+@@ -102,7 +102,7 @@
+     'path_chooser_accelerator_string': 'Tab',
+     'path_chooser_max_popup_rows': 20,
+     'path_chooser_show_hidden_files': False,
+-    'new_release_check': True,
++    'new_release_check': False,
+     'proxy': {
+         'type': 0,
+         'hostname': '',
+--- a/deluge/ui/gtk3/gtkui.py
++++ b/deluge/ui/gtk3/gtkui.py
+@@ -116,7 +116,7 @@
+     'enable_appindicator': False,
+     'lock_tray': False,
+     'tray_password': '',
+-    'check_new_releases': True,
++    'check_new_releases': False,
+     'default_load_path': None,
+     'window_maximized': False,
+     'window_x_pos': 0,
+@@ -136,7 +136,7 @@
+     'autostart_localhost': False,
+     'autoadd_queued': False,
+     'choose_directory_dialog_path': get_default_download_dir(),
+-    'show_new_releases': True,
++    'show_new_releases': False,
+     'show_sidebar': True,
+     'show_toolbar': True,
+     'show_statusbar': True,
+
