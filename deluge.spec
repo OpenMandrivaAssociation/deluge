@@ -1,5 +1,4 @@
-#define _enable_debug_packages %nil
-#define debug_package %nil
+%define debug_package %nil
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
