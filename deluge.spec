@@ -62,6 +62,6 @@ desktop-file-install \
 	deluge/ui/data/share/applications/%{name}.desktop
 
 # appdata
-install -pm 0755 -d %{buildroot}%{_datadir}/appdata
-install -pm 0644 deluge/ui/data/share/appdata/%{name}.appdata.xml %{buildroot}%{_datadir}/appdata/
+#install -pm 0755 -d %{buildroot}%{_datadir}/appdata
+#install -pm 0644 deluge/ui/data/share/appdata/%{name}.appdata.xml %{buildroot}%{_datadir}/appdata/
 
