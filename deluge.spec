@@ -8,7 +8,7 @@ License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		https://deluge-torrent.org/
 Source0:	https://download.deluge-torrent.org/source/%{name}-%{version}.tar.gz
-Patch0:		deluge-2.1.1-dont_check_for_new_release.patch
+#Patch0:		deluge-2.1.1-dont_check_for_new_release.patch
 
 BuildRequires:	appstream-util
 BuildRequires:	desktop-file-utils
