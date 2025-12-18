@@ -22,6 +22,7 @@ BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(libtorrent)
 BuildRequires:	python%{pyver}dist(setproctitle)
 BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(twisted)
 BuildRequires:	zlib-devel
 
 Requires:	%{_lib}rsvg2_2
