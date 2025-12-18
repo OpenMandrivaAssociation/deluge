@@ -2,13 +2,13 @@
 
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
-Version:	2.1.1
-Release:	5
+Version:	2.2.0
+Release:	1
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		https://deluge-torrent.org/
 Source0:	https://download.deluge-torrent.org/source/%{name}-%{version}.tar.gz
-Patch0:		deluge-2.1.1-dont_check_for_new_release.patch
+#Patch0:		deluge-2.1.1-dont_check_for_new_release.patch
 
 BuildRequires:	appstream-util
 BuildRequires:	desktop-file-utils
@@ -22,6 +22,7 @@ BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(libtorrent)
 BuildRequires:	python%{pyver}dist(setproctitle)
 BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(twisted)
 BuildRequires:	zlib-devel
 
 Requires:	%{_lib}rsvg2_2
@@ -37,7 +38,7 @@ and XFCE.
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
-%{_datadir}/appdata/%{name}.appdata.xml
+#{_datadir}/appdata/%{name}.appdata.xml
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_iconsdir}/hicolor/*x*/apps/deluge-panel.png
 %{_mandir}/man1/%{name}*.1.*
@@ -62,6 +63,6 @@ desktop-file-install \
 	deluge/ui/data/share/applications/%{name}.desktop
 
 # appdata
-install -pm 0755 -d %{buildroot}%{_datadir}/appdata
-install -pm 0644 deluge/ui/data/share/appdata/%{name}.appdata.xml %{buildroot}%{_datadir}/appdata/
+#install -pm 0755 -d %{buildroot}%{_datadir}/appdata
+#install -pm 0644 deluge/ui/data/share/appdata/%{name}.appdata.xml %{buildroot}%{_datadir}/appdata/
 
