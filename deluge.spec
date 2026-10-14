@@ -3,7 +3,7 @@
 Summary:	Full-featured GTK+ Bittorrent client
 Name:		deluge
 Version:	2.2.0
-Release:	1
+Release:	2
 License:	GPLv3+ with exceptions
 Group:		Networking/File transfer
 Url:		https://deluge-torrent.org/
@@ -16,7 +16,7 @@ BuildRequires:	boost-devel
 BuildRequires:	imagemagick
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(openssl)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(wheel)
 BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(libtorrent)
@@ -38,7 +38,7 @@ and XFCE.
 %{_bindir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.*
-#{_datadir}/appdata/%{name}.appdata.xml
+#{_datadir}/appdata/%%{name}.appdata.xml
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_iconsdir}/hicolor/*x*/apps/deluge-panel.png
 %{_mandir}/man1/%{name}*.1.*
